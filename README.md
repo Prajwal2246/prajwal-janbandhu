@@ -1,0 +1,29 @@
+# Prajwal Janbandhu
+
+My personal portfolio: experience, projects, selected open-source contributions, and resume.
+
+Built with HTML and CSS. No dependencies, build step, or environment variables are required.
+
+## Deploy to Vercel
+
+1. Import `Prajwal2246/prajwal-janbandhu` at https://vercel.com/new.
+2. Use project name `prajwal-janbandhu` (or another available name).
+3. Keep the root directory as `./` and the framework preset as **Other**.
+4. `vercel.json` sets the output directory to `dist` and disables build/install commands.
+5. Deploy. Vercel will show the assigned URL; your preferred `vercel.app` subdomain depends on availability.
+
+## Local preview
+
+```sh
+python3 -m http.server 8000 --directory dist
+```
+
+Open http://localhost:8000.
+
+## Edit
+
+- `dist/index.html`: portfolio content and links
+- `dist/styles.css`: layout, colors, and responsive styles
+- `dist/Prajwal_Janbandhu_Resume.pdf`: downloadable resume
+
+Contribution statuses are a dated snapshot. Check the linked GitHub PRs before updating them.
