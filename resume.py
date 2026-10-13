@@ -36,8 +36,8 @@ def a(url, text=None):
     return f'<a href="{url}"><u>{text or url.removeprefix("https://").removeprefix("mailto:")}</u></a>'
 
 
-def pr(repo, n):
-    return a(f"https://github.com/{repo}/pull/{n}", f"#{n}")
+def merged(repo):
+    return f"https://github.com/{repo}/pulls?q=is%3Apr+is%3Amerged+author%3APrajwal2246"
 
 
 def h(text):
@@ -72,7 +72,7 @@ story = [
     Paragraph(" | ".join([icon("github", 11.5) + a("https://github.com/Prajwal2246"),
                           icon("linkedin", 11) + a("https://linkedin.com/in/prajwaljanbandhu/"),
                           a("https://leetcode.com/u/Prajwal_2246/")]), contact),
-    Paragraph(" | ".join(["Navi Mumbai, India", icon("email", 13, 10) + a("mailto:prajwal3274@gmail.com"),
+    Paragraph(" | ".join([icon("email", 13, 10) + a("mailto:prajwal3274@gmail.com"),
                           icon("phone", 7) + "+91 9511933274"]), contact),
 
     *h("Summary"),
@@ -109,22 +109,18 @@ story = [
     ),
 
     *h("Open Source Contributions"),
-    row("<b>Fleet — Contributor (7 merged PRs)</b>", a("https://github.com/fleetdm/fleet", "github.com/fleetdm/fleet")),
+    row("<b>Fleet — Contributor</b>", a(merged(FLEET), "View PRs")),
     *bullets(
-        "Merged fixes across policy execution, software inventory, script handling, and navigation in a large-scale "
-        f"<b>Go</b> and <b>TypeScript/React</b> codebase ({pr(FLEET, 54411)}, {pr(FLEET, 53810)}, {pr(FLEET, 54296)}, "
-        f"{pr(FLEET, 54509)}, {pr(FLEET, 54726)}).",
-        f"Made <b>fleetctl apply</b> reject incorrectly typed profile paths and labels instead of silently dropping them "
-        f"({pr(FLEET, 55097)}), and stopped batch software uploads after the first failure using a cancellable "
-        f"<b>errgroup</b> context ({pr(FLEET, 53407)}).",
+        "Merged <b>7 pull requests</b> into Fleet's <b>Go</b> and <b>TypeScript/React</b> codebase, fixing issues in "
+        "policy execution, software inventory, script handling, and navigation.",
+        "Made <b>fleetctl apply</b> reject incorrectly typed profile settings instead of silently dropping them, and "
+        "stopped batch software uploads after the first failure.",
     ),
-    row("<b>Superserve AI — Contributor (2 merged PRs)</b>",
-        a("https://github.com/superserve-ai/superserve", "github.com/superserve-ai/superserve")),
-    *bullets(f"Added <b>MCP</b> network-log pagination with cursor forwarding and regression tests ({pr(SUPERSERVE, 356)}), "
-             f"and fixed a development watcher that deleted the HTTP build output ({pr(SUPERSERVE, 330)})."),
-    row("<b>Vitest — Contributor</b>", a("https://github.com/vitest-dev/vitest", "github.com/vitest-dev/vitest")),
-    *bullets(f"Opened a pull request adding <b>Temporal.Instant</b> and <b>Temporal.ZonedDateTime</b> support to "
-             f"<b>vi.setSystemTime()</b> ({pr('vitest-dev/vitest', 11321)}, in review)."),
+    row("<b>Superserve AI — Contributor</b>", a(merged(SUPERSERVE), "View PRs")),
+    *bullets("Merged <b>2 pull requests</b> adding <b>MCP</b> network-log pagination with regression tests and fixing "
+             "a development build watcher."),
+    row("<b>Vitest — Contributor</b>", a("https://github.com/vitest-dev/vitest/pull/11321", "View PR")),
+    *bullets("Opened a pull request adding <b>Temporal</b> date support to <b>vi.setSystemTime()</b>, currently in review."),
 
     *h("Projects"),
     row("<b>Drivly — P2P Vehicle-Sharing Platform</b>", a("https://drivly-mu.vercel.app/", "Live Link")),
