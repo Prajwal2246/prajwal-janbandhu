@@ -23,12 +23,12 @@ pdfmetrics.registerFont(TTFont("Carlito-Bold", FONTS / "Carlito-Bold.ttf"))
 addMapping("Carlito", 0, 0, "Carlito")
 addMapping("Carlito", 1, 0, "Carlito-Bold")
 
-body = ParagraphStyle("body", fontName="Carlito", fontSize=12, leading=14.6)
-name = ParagraphStyle("name", body, fontSize=22.5, leading=27, alignment=TA_CENTER)
-contact = ParagraphStyle("contact", body, fontSize=11, leading=16, alignment=TA_CENTER)
-heading = ParagraphStyle("heading", body, fontSize=13.5, leading=17, leftIndent=8, spaceBefore=10)
-skill = ParagraphStyle("skill", body, fontName="Carlito-Bold", leftIndent=14)
-bullet = ParagraphStyle("bullet", body, leftIndent=36, bulletIndent=18, bulletFontName="Carlito", bulletFontSize=10)
+body = ParagraphStyle("body", fontName="Carlito", fontSize=10.4, leading=12.4)
+name = ParagraphStyle("name", body, fontSize=20, leading=24, alignment=TA_CENTER)
+contact = ParagraphStyle("contact", body, fontSize=10.3, leading=13.5, alignment=TA_CENTER)
+heading = ParagraphStyle("heading", body, fontSize=12, leading=14, leftIndent=8, spaceBefore=5)
+skill = ParagraphStyle("skill", body, leftIndent=14)
+bullet = ParagraphStyle("bullet", body, leftIndent=34, bulletIndent=18, bulletFontName="Carlito", bulletFontSize=9)
 right = ParagraphStyle("right", body, alignment=TA_RIGHT)
 
 
@@ -36,42 +36,48 @@ def a(url, text=None):
     return f'<a href="{url}"><u>{text or url.removeprefix("https://").removeprefix("mailto:")}</u></a>'
 
 
+def pr(repo, n):
+    return a(f"https://github.com/{repo}/pull/{n}", f"#{n}")
+
+
 def h(text):
     # One font size: mixed-size small caps extract as "W E / ORK XPERIENCE".
-    return [Paragraph(text.upper(), heading), HRFlowable(width="100%", thickness=1, color="black", spaceBefore=1, spaceAfter=10)]
+    return [Paragraph(text.upper(), heading), HRFlowable(width="100%", thickness=1, color="black", spaceBefore=1, spaceAfter=5)]
 
 
-def row(left, when="", indent=8, space_after=10):
+def row(left, when="", indent=8):
     t = Table([[Paragraph(left, ParagraphStyle("l", body, leftIndent=indent)), Paragraph(when, right)]],
-              colWidths=["72%", "28%"])
+              colWidths=["60%", "40%"])
     t.setStyle(TableStyle([("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-                           ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), space_after)]))
+                           ("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]))
     return t
 
 
 def bullets(*items):
-    return [Paragraph(i, bullet, bulletText="●") for i in items] + [Spacer(1, 12)]
+    return [Paragraph(i, bullet, bulletText="●") for i in items] + [Spacer(1, 4)]
 
+
+FLEET, SUPERSERVE = "fleetdm/fleet", "superserve-ai/superserve"
 
 story = [
     Paragraph("Prajwal Janbandhu", name),
+    Paragraph(f"Navi Mumbai, India | +91 9511933274 | {a('mailto:prajwal3274@gmail.com')}", contact),
     Paragraph(" | ".join([a("https://github.com/Prajwal2246"), a("https://linkedin.com/in/prajwaljanbandhu/"),
                           a("https://leetcode.com/u/Prajwal_2246/")]), contact),
-    Paragraph(f"{a('mailto:prajwal3274@gmail.com')} | +91 9511933274", contact),
 
     *h("Summary"),
     Paragraph(
-        "Full Stack Developer experienced with <b>Ruby on Rails</b> and <b>React</b>, with a strong foundation in "
-        "<b>JavaScript</b>, <b>TypeScript</b>, <b>Node.js</b>, and <b>Next.js</b>. Experienced in building <b>APIs</b>, "
-        "automation, integrations, and database-driven applications using AI-assisted development with <b>Claude Code</b>, "
-        "with <b>9 merged pull requests</b> to open-source projects.", body),
+        "Full Stack Developer building an enterprise CRM with <b>Ruby on Rails</b>, <b>React</b>, and <b>PostgreSQL</b>, "
+        "with a strong foundation in <b>JavaScript</b>, <b>TypeScript</b>, <b>Node.js</b>, and <b>Next.js</b>. Builds "
+        "<b>REST APIs</b>, third-party integrations, automation, and database-driven features end to end, with "
+        "<b>9 merged pull requests</b> to open-source projects including Fleet.", body),
 
     *h("Skills"),
-    Paragraph("Languages: JavaScript, TypeScript, Ruby, SQL, Go", skill),
-    Paragraph("Frontend: React.js, Next.js, Tailwind CSS", skill),
-    Paragraph("Backend: Node.js, Express.js, Ruby on Rails, REST APIs", skill),
-    Paragraph("Databases: PostgreSQL, MongoDB, Prisma ORM", skill),
-    Paragraph("AI &amp; Tools: Claude Code, Git, Firebase", skill),
+    Paragraph("<b>Languages:</b> JavaScript, TypeScript, Ruby, SQL, Go", skill),
+    Paragraph("<b>Frontend:</b> React.js, Next.js, Tailwind CSS", skill),
+    Paragraph("<b>Backend:</b> Ruby on Rails, Node.js, Express.js, REST APIs, JWT", skill),
+    Paragraph("<b>Databases:</b> PostgreSQL, MongoDB, Prisma ORM", skill),
+    Paragraph("<b>AI &amp; Tools:</b> Claude Code, Git, Firebase, Vercel", skill),
 
     *h("Work Experience"),
     row("<b>Envision Next LLP — Associate Full Stack Developer</b>", "<b>Apr 2026 - Present</b>"),
@@ -82,10 +88,6 @@ story = [
         "calculation logic, <b>Rails APIs</b>, database changes, filters, reports/exports, and approval workflows.",
         "Developed <b>MahaRERA API</b> integrations and automation for 1,000+ projects, implementing authentication, "
         "response processing, error handling, and Excel-driven workflows to automatically update project information.",
-        "Built and enhanced production features across frontend UI, APIs, databases, authentication, permissions, "
-        "integrations, and exports, investigating existing code and data flows to deliver end-to-end fixes and improvements.",
-        "Used <b>Claude Code</b> as an AI-assisted development tool for codebase exploration, implementation, debugging, "
-        "refactoring, and iterative development while reviewing and validating generated changes.",
     ),
     row("<b>Tejas — Development Intern</b>", "<b>May 2025 - Oct 2025</b>"),
     *bullets(
@@ -97,46 +99,43 @@ story = [
         "application performance.",
     ),
 
-    *h("Projects"),
-    row("<b>Drivly P2P Vehicle-Sharing Platform</b>", a("https://drivly-mu.vercel.app/", "Live Link")),
-    *bullets(
-        "Built a peer-to-peer vehicle-sharing platform for residential communities using <b>Next.js</b>, "
-        "<b>TypeScript</b>, and <b>Tailwind CSS</b>.",
-        "Integrated <b>Prisma ORM</b> with <b>PostgreSQL</b> and implemented custom <b>JWT</b> authentication, database "
-        "schemas, and realistic multi-user seed data.",
-        "Implemented <b>Next.js</b> streaming, loading states, and optimized UI patterns to improve perceived performance "
-        "and user experience.",
-    ),
-    row("<b>Blood Donor App - MERN Stack</b>", a("https://donar-app-frontend.vercel.app/", "Live Link")),
-    *bullets(
-        "Developed a full-stack blood donor management application using <b>MongoDB</b>, <b>Express.js</b>, "
-        "<b>React.js</b> and <b>Node.js</b>.",
-        "Built <b>RESTful APIs</b> for user authentication, donor management, and data retrieval, with the frontend "
-        "deployed on <b>Vercel</b> and secure cross-origin communication configured with the backend.",
-    ),
-
     *h("Open Source Contributions"),
-    row("<b>Fleet — Contributor (7 merged PRs)</b>"),
+    row("<b>Fleet — Contributor (7 merged PRs)</b>", a("https://github.com/fleetdm/fleet", "github.com/fleetdm/fleet")),
     *bullets(
-        "Contributed fixes across policy execution, software inventory, script handling, navigation, and batch "
-        "operations in a large-scale <b>Go</b> and <b>TypeScript/React</b> codebase.",
-        "Made <b>fleetctl apply</b> reject incorrectly typed profile paths and labels, and stopped batch software uploads "
-        "after the first package failure using a cancellable errgroup context.",
-        "Collaborated with maintainers through pull requests, code reviews, CI validation, and iterative changes.",
+        "Merged fixes across policy execution, software inventory, script handling, and navigation in a large-scale "
+        f"<b>Go</b> and <b>TypeScript/React</b> codebase ({pr(FLEET, 54411)}, {pr(FLEET, 53810)}, {pr(FLEET, 54296)}, "
+        f"{pr(FLEET, 54509)}, {pr(FLEET, 54726)}).",
+        f"Made <b>fleetctl apply</b> reject incorrectly typed profile paths and labels instead of silently dropping them "
+        f"({pr(FLEET, 55097)}), and stopped batch software uploads after the first failure using a cancellable "
+        f"<b>errgroup</b> context ({pr(FLEET, 53407)}).",
     ),
-    row("<b>Superserve AI — Contributor (2 merged PRs)</b>"),
-    *bullets("Contributed to <b>MCP</b> functionality, including network-log pagination with cursor forwarding and "
-             "regression tests, and a development watcher fix."),
-    row("<b>Vitest — Contributor</b>"),
-    *bullets("Opened a pull request adding <b>Temporal.Instant</b> and <b>Temporal.ZonedDateTime</b> support to "
-             "<b>vi.setSystemTime()</b>, currently in review."),
+    row("<b>Superserve AI — Contributor (2 merged PRs)</b>",
+        a("https://github.com/superserve-ai/superserve", "github.com/superserve-ai/superserve")),
+    *bullets(f"Added <b>MCP</b> network-log pagination with cursor forwarding and regression tests ({pr(SUPERSERVE, 356)}), "
+             f"and fixed a development watcher that deleted the HTTP build output ({pr(SUPERSERVE, 330)})."),
+    row("<b>Vitest — Contributor</b>", a("https://github.com/vitest-dev/vitest", "github.com/vitest-dev/vitest")),
+    *bullets(f"Opened a pull request adding <b>Temporal.Instant</b> and <b>Temporal.ZonedDateTime</b> support to "
+             f"<b>vi.setSystemTime()</b> ({pr('vitest-dev/vitest', 11321)}, in review)."),
+
+    *h("Projects"),
+    row("<b>Drivly — P2P Vehicle-Sharing Platform</b>", a("https://drivly-mu.vercel.app/", "Live Link")),
+    *bullets(
+        "Built a peer-to-peer vehicle-sharing platform for residential communities with <b>Next.js</b>, "
+        "<b>TypeScript</b>, <b>Tailwind CSS</b>, <b>Prisma ORM</b>, and <b>PostgreSQL</b>, including custom <b>JWT</b> "
+        "authentication and multi-user booking workflows.",
+        "Prevented double bookings by running conflict checks inside a <b>database transaction</b> with "
+        "<b>row-level locking</b>, and calculated booking prices on the server from stored vehicle rates.",
+    ),
+    row("<b>Blood Donor App — MERN Stack</b>", a("https://donar-app-frontend.vercel.app/", "Live Link")),
+    *bullets("Built <b>RESTful APIs</b> for authentication and donor management with <b>Node.js</b>, <b>Express.js</b>, "
+             "and <b>MongoDB</b>, connected to a <b>React.js</b> frontend deployed on <b>Vercel</b>."),
 
     *h("Education"),
     row("B.E. in Information Technology, JSPM RSCOE - CGPA: 8.3", "2020 - 2024", indent=6),
 ]
 
 SimpleDocTemplate(
-    "dist/Prajwal_Janbandhu_Resume.pdf", pagesize=A4, leftMargin=16, rightMargin=24, topMargin=24, bottomMargin=28,
+    "dist/Prajwal_Janbandhu_Resume.pdf", pagesize=A4, leftMargin=16, rightMargin=24, topMargin=16, bottomMargin=14,
     title="Prajwal Janbandhu - Full Stack Developer", author="Prajwal Janbandhu",
     keywords="Full Stack Developer, Ruby on Rails, React, TypeScript, JavaScript, Node.js, Next.js, PostgreSQL, REST APIs",
 ).build(story)
