@@ -23,7 +23,7 @@ pdfmetrics.registerFont(TTFont("Carlito-Bold", FONTS / "Carlito-Bold.ttf"))
 addMapping("Carlito", 0, 0, "Carlito")
 addMapping("Carlito", 1, 0, "Carlito-Bold")
 
-body = ParagraphStyle("body", fontName="Carlito", fontSize=10.4, leading=12.4)
+body = ParagraphStyle("body", fontName="Carlito", fontSize=10.8, leading=13)
 name = ParagraphStyle("name", body, fontSize=20, leading=24, alignment=TA_CENTER)
 contact = ParagraphStyle("contact", body, fontSize=10.3, leading=13.5, alignment=TA_CENTER)
 heading = ParagraphStyle("heading", body, fontSize=12, leading=14, leftIndent=8, spaceBefore=5)
@@ -57,13 +57,23 @@ def bullets(*items):
     return [Paragraph(i, bullet, bulletText="●") for i in items] + [Spacer(1, 4)]
 
 
+ICONS = Path(__file__).parent / "icons"
+
+
+def icon(name, w, h=11):
+    # Decorative only: an ATS ignores images, the text next to each icon carries the data.
+    return f'<img src="{ICONS / name}.png" width="{w}" height="{h}" valign="-2"/>&nbsp;'
+
+
 FLEET, SUPERSERVE = "fleetdm/fleet", "superserve-ai/superserve"
 
 story = [
     Paragraph("Prajwal Janbandhu", name),
-    Paragraph(f"Navi Mumbai, India | +91 9511933274 | {a('mailto:prajwal3274@gmail.com')}", contact),
-    Paragraph(" | ".join([a("https://github.com/Prajwal2246"), a("https://linkedin.com/in/prajwaljanbandhu/"),
+    Paragraph(" | ".join([icon("github", 11.5) + a("https://github.com/Prajwal2246"),
+                          icon("linkedin", 11) + a("https://linkedin.com/in/prajwaljanbandhu/"),
                           a("https://leetcode.com/u/Prajwal_2246/")]), contact),
+    Paragraph(" | ".join(["Navi Mumbai, India", icon("email", 13, 10) + a("mailto:prajwal3274@gmail.com"),
+                          icon("phone", 7) + "+91 9511933274"]), contact),
 
     *h("Summary"),
     Paragraph(
@@ -73,7 +83,7 @@ story = [
         "<b>9 merged pull requests</b> to open-source projects including Fleet.", body),
 
     *h("Skills"),
-    Paragraph("<b>Languages:</b> JavaScript, TypeScript, Ruby, SQL, Go, HTML, CSS", skill),
+    Paragraph("<b>Languages:</b> JavaScript, TypeScript, Ruby, SQL, Go", skill),
     Paragraph("<b>Frontend:</b> React.js, Next.js, Tailwind CSS", skill),
     Paragraph("<b>Backend:</b> Ruby on Rails, Node.js, Express.js, REST APIs, JWT", skill),
     Paragraph("<b>Databases:</b> PostgreSQL, MongoDB, Prisma ORM", skill),
@@ -88,18 +98,6 @@ story = [
         "calculation logic, <b>Rails APIs</b>, database changes, filters, reports/exports, and approval workflows.",
         "Developed <b>MahaRERA API</b> integrations and automation for 1,000+ projects, implementing authentication, "
         "response processing, error handling, and Excel-driven workflows to automatically update project information.",
-    ),
-    row("<b>Tejas — Development Intern</b>", "<b>Jan 2026 - Feb 2026</b>"),
-    *bullets(
-        "Engineered a custom <b>WebRTC</b> signaling mechanism using <b>Firestore</b>, establishing peer-to-peer video "
-        "connections in under 2 seconds for 1-on-1 remote mentoring sessions.",
-        "Implemented zero-polling real-time data synchronization with <b>Firestore onSnapshot</b> listeners, processing "
-        "student questions and updating tutor dashboards with sub-500ms latency, with <b>Framer Motion</b> UI transitions.",
-    ),
-    row("<b>Hackveda — Web Development Intern</b>", "<b>Jan 2024 - Jun 2024</b>"),
-    *bullets(
-        "Implemented UI updates and <b>HTML/CSS</b> changes across company web pages based on design and content requests.",
-        "Fixed layout and styling issues on <b>Day Trade Insight</b>, a trading-insights web platform built at Hackveda.",
     ),
 
     *h("Open Source Contributions"),
@@ -128,6 +126,13 @@ story = [
         "authentication and multi-user booking workflows.",
         "Prevented double bookings by running conflict checks inside a <b>database transaction</b> with "
         "<b>row-level locking</b>, and calculated booking prices on the server from stored vehicle rates.",
+    ),
+    row("<b>Live Mentoring Platform — Tejas (Internship, Jan - Feb 2026)</b>"),
+    *bullets(
+        "Engineered a custom <b>WebRTC</b> signaling mechanism using <b>Firestore</b>, establishing peer-to-peer video "
+        "connections for 1-on-1 remote mentoring sessions between students and tutors.",
+        "Implemented real-time question and tutor-dashboard updates with <b>Firestore onSnapshot</b> listeners instead "
+        "of polling, and added UI transitions with <b>Framer Motion</b>.",
     ),
     row("<b>Blood Donor App — MERN Stack</b>", a("https://donar-app-frontend.vercel.app/", "Live Link")),
     *bullets("Built <b>RESTful APIs</b> for authentication and donor management with <b>Node.js</b>, <b>Express.js</b>, "
