@@ -73,7 +73,7 @@ story = [
         "<b>9 merged pull requests</b> to open-source projects including Fleet.", body),
 
     *h("Skills"),
-    Paragraph("<b>Languages:</b> JavaScript, TypeScript, Ruby, SQL, Go", skill),
+    Paragraph("<b>Languages:</b> JavaScript, TypeScript, Ruby, SQL, Go, HTML, CSS", skill),
     Paragraph("<b>Frontend:</b> React.js, Next.js, Tailwind CSS", skill),
     Paragraph("<b>Backend:</b> Ruby on Rails, Node.js, Express.js, REST APIs, JWT", skill),
     Paragraph("<b>Databases:</b> PostgreSQL, MongoDB, Prisma ORM", skill),
@@ -89,14 +89,17 @@ story = [
         "Developed <b>MahaRERA API</b> integrations and automation for 1,000+ projects, implementing authentication, "
         "response processing, error handling, and Excel-driven workflows to automatically update project information.",
     ),
-    row("<b>Tejas — Development Intern</b>", "<b>May 2025 - Oct 2025</b>"),
+    row("<b>Tejas — Development Intern</b>", "<b>Jan 2026 - Feb 2026</b>"),
     *bullets(
         "Engineered a custom <b>WebRTC</b> signaling mechanism using <b>Firestore</b>, establishing peer-to-peer video "
         "connections in under 2 seconds for 1-on-1 remote mentoring sessions.",
         "Implemented zero-polling real-time data synchronization with <b>Firestore onSnapshot</b> listeners, processing "
-        "student questions and updating tutor dashboards with sub-500ms latency.",
-        "Integrated <b>Framer Motion</b> for fluid UI transitions and optimized frontend asset delivery for improved "
-        "application performance.",
+        "student questions and updating tutor dashboards with sub-500ms latency, with <b>Framer Motion</b> UI transitions.",
+    ),
+    row("<b>Hackveda — Web Development Intern</b>", "<b>Jan 2024 - Jun 2024</b>"),
+    *bullets(
+        "Implemented UI updates and <b>HTML/CSS</b> changes across company web pages based on design and content requests.",
+        "Fixed layout and styling issues on <b>Day Trade Insight</b>, a trading-insights web platform built at Hackveda.",
     ),
 
     *h("Open Source Contributions"),
