@@ -100,6 +100,14 @@ story = [
         "response processing, error handling, and Excel-driven workflows to automatically update project information.",
     ),
 
+    row("<b>Tejas — Development Intern</b>", "<b>Jan 2026 - Feb 2026</b>"),
+    *bullets(
+        "Engineered a custom <b>WebRTC</b> signaling mechanism using <b>Firestore</b>, establishing peer-to-peer video "
+        "connections for 1-on-1 remote mentoring sessions between students and tutors.",
+        "Implemented real-time question and tutor-dashboard updates with <b>Firestore onSnapshot</b> listeners instead "
+        "of polling, and added UI transitions with <b>Framer Motion</b>.",
+    ),
+
     *h("Open Source Contributions"),
     row("<b>Fleet — Contributor (7 merged PRs)</b>", a("https://github.com/fleetdm/fleet", "github.com/fleetdm/fleet")),
     *bullets(
@@ -126,13 +134,6 @@ story = [
         "authentication and multi-user booking workflows.",
         "Prevented double bookings by running conflict checks inside a <b>database transaction</b> with "
         "<b>row-level locking</b>, and calculated booking prices on the server from stored vehicle rates.",
-    ),
-    row("<b>Live Mentoring Platform — Tejas (Internship, Jan - Feb 2026)</b>"),
-    *bullets(
-        "Engineered a custom <b>WebRTC</b> signaling mechanism using <b>Firestore</b>, establishing peer-to-peer video "
-        "connections for 1-on-1 remote mentoring sessions between students and tutors.",
-        "Implemented real-time question and tutor-dashboard updates with <b>Firestore onSnapshot</b> listeners instead "
-        "of polling, and added UI transitions with <b>Framer Motion</b>.",
     ),
     row("<b>Blood Donor App — MERN Stack</b>", a("https://donar-app-frontend.vercel.app/", "Live Link")),
     *bullets("Built <b>RESTful APIs</b> for authentication and donor management with <b>Node.js</b>, <b>Express.js</b>, "
